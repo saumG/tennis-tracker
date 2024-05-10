@@ -1,0 +1,10 @@
+.venv
+
+output_videos/
+tracker_stubs/
+training/tennis-ball-detection-6/
+runs/detect/
+
+*.pt
+*.pth
+yolov8x.pt
