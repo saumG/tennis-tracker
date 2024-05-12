@@ -19,23 +19,39 @@ class PlayerTracker:
         return filtered_player_detections
 
     def choose_players(self, court_keypoints, player_dict):
-        distances = []
-        for track_id, bbox in player_dict.items():
-            player_center = get_center_of_bbox(bbox)
-
-            min_distance = float('inf')
-            for i in range(0,len(court_keypoints),2):
-                court_keypoint = (court_keypoints[i], court_keypoints[i+1])
-                distance = measure_distance(player_center, court_keypoint)
-                if distance < min_distance:
-                    min_distance = distance
-            distances.append((track_id, min_distance))
         
-        # sorrt the distances in ascending order
-        distances.sort(key = lambda x: x[1])
-        # Choose the first 2 tracks
-        chosen_players = [distances[0][0], distances[1][0]]
+        player_ids = []
+        for track_id, bbox in player_dict.items():
+            player_ids.append(track_id)
+        
+        player_ids.sort()
+        chosen_players = [player_ids[0], player_ids[1]]
+        
+        print(chosen_players)
         return chosen_players
+            
+        
+        # TRYING TO SELECT POINTS BY CLOSEST DISTANCE TO KEYPOINTS - NOT SUCCESSFUL
+        # distances = []
+        # for track_id, bbox in player_dict.items():
+        #     player_center = get_center_of_bbox(bbox)
+
+        #     min_distance = float('inf')
+        #     for i in range(0,len(court_keypoints),2):
+        #         court_keypoint = (court_keypoints[i], court_keypoints[i+1])
+        #         distance = measure_distance(player_center, court_keypoint)
+        #         if distance < min_distance:
+        #             min_distance = distance
+        #     distances.append((track_id, min_distance))
+        
+        # # sort the distances in ascending order
+        # distances.sort(key = lambda x: x[1])
+        
+        # print(distances)
+        
+        # # Choose the first 2 tracks
+        # chosen_players = [distances[0][0], distances[1][0]]
+        # return chosen_players
 
 
     def detect_frames(self,frames, read_from_stub=False, stub_path=None):

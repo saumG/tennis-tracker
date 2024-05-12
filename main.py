@@ -40,8 +40,8 @@ def main():
     court_line_detector = CourtLineDetector(court_model_path)
     court_keypoints = court_line_detector.predict(video_frames[0])
 
-    # # choose players
-    # player_detections = player_tracker.choose_and_filter_players(court_keypoints, player_detections)
+    # choose players
+    player_detections = player_tracker.choose_and_filter_players(court_keypoints, player_detections)
 
     # # MiniCourt
     # mini_court = MiniCourt(video_frames[0]) 
