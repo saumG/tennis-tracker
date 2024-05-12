@@ -46,9 +46,9 @@ def main():
     # Initialize MiniCourt
     mini_court = MiniCourt(video_frames[0]) 
 
-    # # Detect ball shots
-    # ball_shot_frames= ball_tracker.get_ball_shot_frames(ball_detections)
-
+    # Detect ball shots
+    ball_shot_frames= ball_tracker.get_ball_shot_frames(ball_detections)
+    
     # # Convert positions to mini court positions
     # player_mini_court_detections, ball_mini_court_detections = mini_court.convert_bounding_boxes_to_mini_court_coordinates(player_detections, 
     #                                                                                                       ball_detections,
