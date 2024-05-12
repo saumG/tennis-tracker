@@ -27,7 +27,6 @@ class PlayerTracker:
         player_ids.sort()
         chosen_players = [player_ids[0], player_ids[1]]
         
-        print(chosen_players)
         return chosen_players
             
         

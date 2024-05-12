@@ -16,8 +16,8 @@ from utils import (
 
 class MiniCourt():
     def __init__(self,frame):
-        self.drawing_rectangle_width = 250
-        self.drawing_rectangle_height = 500
+        self.drawing_rectangle_width = 150
+        self.drawing_rectangle_height = 300
         self.buffer = 50
         self.padding_court=20
 
@@ -29,7 +29,7 @@ class MiniCourt():
 
     def convert_meters_to_pixels(self, meters):
         return convert_meters_to_pixel_distance(meters,
-                                                constants.DOUBLE_LINE_WIDTH,
+                                                constants.DOUBLE_COURT_WIDTH,
                                                 self.court_drawing_width
                                             )
 
@@ -42,42 +42,44 @@ class MiniCourt():
         drawing_key_points[2] , drawing_key_points[3] = int(self.court_end_x), int(self.court_start_y)
         # point 2
         drawing_key_points[4] = int(self.court_start_x)
-        drawing_key_points[5] = self.court_start_y + self.convert_meters_to_pixels(constants.HALF_COURT_LINE_HEIGHT*2)
+        drawing_key_points[5] = self.court_start_y + self.convert_meters_to_pixels(constants.HALF_COURT_HEIGHT*2)
         # point 3
         drawing_key_points[6] = drawing_key_points[0] + self.court_drawing_width
         drawing_key_points[7] = drawing_key_points[5] 
-        # #point 4
+        # point 4
         drawing_key_points[8] = drawing_key_points[0] +  self.convert_meters_to_pixels(constants.DOUBLE_ALLY_DIFFERENCE)
         drawing_key_points[9] = drawing_key_points[1] 
-        # #point 5
+        # point 5
         drawing_key_points[10] = drawing_key_points[4] + self.convert_meters_to_pixels(constants.DOUBLE_ALLY_DIFFERENCE)
         drawing_key_points[11] = drawing_key_points[5] 
-        # #point 6
+        # point 6
         drawing_key_points[12] = drawing_key_points[2] - self.convert_meters_to_pixels(constants.DOUBLE_ALLY_DIFFERENCE)
         drawing_key_points[13] = drawing_key_points[3] 
-        # #point 7
+        # point 7
         drawing_key_points[14] = drawing_key_points[6] - self.convert_meters_to_pixels(constants.DOUBLE_ALLY_DIFFERENCE)
         drawing_key_points[15] = drawing_key_points[7] 
-        # #point 8
+        # point 8
         drawing_key_points[16] = drawing_key_points[8] 
         drawing_key_points[17] = drawing_key_points[9] + self.convert_meters_to_pixels(constants.NO_MANS_LAND_HEIGHT)
-        # # #point 9
-        drawing_key_points[18] = drawing_key_points[16] + self.convert_meters_to_pixels(constants.SINGLE_LINE_WIDTH)
+        # point 9
+        drawing_key_points[18] = drawing_key_points[16] + self.convert_meters_to_pixels(constants.SINGLE_COURT_WIDTH)
         drawing_key_points[19] = drawing_key_points[17] 
-        # #point 10
+        # point 10
         drawing_key_points[20] = drawing_key_points[10] 
         drawing_key_points[21] = drawing_key_points[11] - self.convert_meters_to_pixels(constants.NO_MANS_LAND_HEIGHT)
-        # # #point 11
-        drawing_key_points[22] = drawing_key_points[20] +  self.convert_meters_to_pixels(constants.SINGLE_LINE_WIDTH)
+        # point 11
+        drawing_key_points[22] = drawing_key_points[20] +  self.convert_meters_to_pixels(constants.SINGLE_COURT_WIDTH)
         drawing_key_points[23] = drawing_key_points[21] 
-        # # #point 12
+        # point 12
         drawing_key_points[24] = int((drawing_key_points[16] + drawing_key_points[18])/2)
         drawing_key_points[25] = drawing_key_points[17] 
-        # # #point 13
+        # point 13
         drawing_key_points[26] = int((drawing_key_points[20] + drawing_key_points[22])/2)
         drawing_key_points[27] = drawing_key_points[21] 
 
-        self.drawing_key_points=drawing_key_points
+        self.drawing_key_points = drawing_key_points
+        
+        
 
     def set_court_lines(self):
         self.lines = [
@@ -109,18 +111,24 @@ class MiniCourt():
         self.start_y = self.end_y - self.drawing_rectangle_height
 
     def draw_court(self,frame):
+         # color court
+        point_0 = [self.drawing_key_points[0],int(self.drawing_key_points[1])]
+        point_3 = [self.drawing_key_points[6],int(self.drawing_key_points[7])]
+        frame = self.draw_court_rectangle(frame, point_0, point_3)
+        
+        # draw keypoints
         for i in range(0, len(self.drawing_key_points),2):
             x = int(self.drawing_key_points[i])
             y = int(self.drawing_key_points[i+1])
-            cv2.circle(frame, (x,y),5, (0,0,255),-1)
-
+            cv2.circle(frame, (x,y),3, (0,0,255),-1)
+        
         # draw Lines
         for line in self.lines:
             start_point = (int(self.drawing_key_points[line[0]*2]), int(self.drawing_key_points[line[0]*2+1]))
             end_point = (int(self.drawing_key_points[line[1]*2]), int(self.drawing_key_points[line[1]*2+1]))
-            cv2.line(frame, start_point, end_point, (0, 0, 0), 2)
+            cv2.line(frame, start_point, end_point, (255, 255, 255), 2)
 
-        # Draw net
+        # Draw net 
         net_start_point = (self.drawing_key_points[0], int((self.drawing_key_points[1] + self.drawing_key_points[5])/2))
         net_end_point = (self.drawing_key_points[2], int((self.drawing_key_points[1] + self.drawing_key_points[5])/2))
         cv2.line(frame, net_start_point, net_end_point, (255, 0, 0), 2)
@@ -130,12 +138,24 @@ class MiniCourt():
     def draw_background_rectangle(self,frame):
         shapes = np.zeros_like(frame,np.uint8)
         # Draw the rectangle
-        cv2.rectangle(shapes, (self.start_x, self.start_y), (self.end_x, self.end_y), (255, 255, 255), cv2.FILLED)
+        cv2.rectangle(shapes, (self.start_x, self.start_y), (self.end_x, self.end_y), (2,113,72), cv2.FILLED)
         out = frame.copy()
-        alpha=0.5
+        alpha=0.2 # transparency
         mask = shapes.astype(bool)
         out[mask] = cv2.addWeighted(frame, alpha, shapes, 1 - alpha, 0)[mask]
 
+        return out
+    
+    
+    def draw_court_rectangle(self, frame, xy1, xy2):
+        shapes = np.zeros_like(frame,np.uint8)
+        # Draw the rectangle
+        cv2.rectangle(shapes, (xy1[0], xy1[1]), (xy2[0], xy2[1]), (198,133,61), cv2.FILLED)
+        out = frame.copy()
+        alpha= 0 # transparency
+        mask = shapes.astype(bool)
+        out[mask] = cv2.addWeighted(frame, alpha, shapes, 1 - alpha, 0)[mask]
+        
         return out
 
     def draw_mini_court(self,frames):
@@ -148,8 +168,10 @@ class MiniCourt():
 
     def get_start_point_of_mini_court(self):
         return (self.court_start_x,self.court_start_y)
+    
     def get_width_of_mini_court(self):
         return self.court_drawing_width
+    
     def get_court_drawing_keypoints(self):
         return self.drawing_key_points
 
