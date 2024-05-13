@@ -16,9 +16,7 @@ from copy import deepcopy
 def main():
     # Read Video
     input_video_path = "input_videos/federer-nadal.mp4"
-    video_frames = read_video(input_video_path)
-    
-    save_video(video_frames, "output_videos/output_video.avi")
+    video_frames = read_video(input_video_path)[:398]
 
     # # Detect Players and Ball
     player_tracker = PlayerTracker(model_path='models/yolov8x')
@@ -39,9 +37,12 @@ def main():
     court_model_path = "models/keypoints_model.pth"
     court_line_detector = CourtLineDetector(court_model_path)
     court_keypoints = court_line_detector.predict(video_frames[0])
+    
+    print("Court Keypoints")
+    print(court_keypoints)
 
     # choose players
-    player_detections = player_tracker.choose_and_filter_players(court_keypoints, player_detections)
+    player_detections = player_tracker.choose_and_filter_players(player_detections)
 
     # Initialize MiniCourt
     mini_court = MiniCourt(video_frames[0]) 
@@ -49,10 +50,11 @@ def main():
     # Detect ball shots
     ball_shot_frames= ball_tracker.get_ball_shot_frames(ball_detections)
     
-    # # Convert positions to mini court positions
-    # player_mini_court_detections, ball_mini_court_detections = mini_court.convert_bounding_boxes_to_mini_court_coordinates(player_detections, 
-    #                                                                                                       ball_detections,
-    #                                                                                                       court_keypoints)
+    # Convert positions to mini court positions
+    mini_court.create_homography_matrix(court_keypoints)
+    player_mini_court_detections, ball_mini_court_detections = mini_court.convert_bounding_boxes_to_mini_court_coordinates(player_detections, 
+                                                                                                                            ball_detections,
+                                                                                                                            court_keypoints)
 
     # player_stats_data = [{
     #     'frame_num':0,
@@ -134,8 +136,8 @@ def main():
 
     # Draw Mini Court
     output_video_frames = mini_court.draw_mini_court(output_video_frames)
-    # output_video_frames = mini_court.draw_points_on_mini_court(output_video_frames,player_mini_court_detections)
-    # output_video_frames = mini_court.draw_points_on_mini_court(output_video_frames,ball_mini_court_detections, color=(0,255,255))    
+    output_video_frames = mini_court.draw_points_on_mini_court(output_video_frames,player_mini_court_detections)
+    output_video_frames = mini_court.draw_points_on_mini_court(output_video_frames,ball_mini_court_detections, color=(0,255,255))    
 
     # # Draw Player Stats
     # output_video_frames = draw_player_stats(output_video_frames,player_stats_data_df)
