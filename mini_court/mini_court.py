@@ -19,7 +19,7 @@ class MiniCourt():
     def __init__(self,frame):
         self.drawing_rectangle_width = 150
         self.drawing_rectangle_height = 300
-        self.buffer = 50
+        self.buffer = 20
         self.padding_court=20
 
         self.set_canvas_background_box_position(frame)
@@ -96,9 +96,9 @@ class MiniCourt():
 
     def set_mini_court_position(self):
         self.court_start_x = self.start_x + self.padding_court
-        self.court_start_y = self.start_y + self.padding_court
+        self.court_start_y = self.start_y + (self.padding_court + 10)
         self.court_end_x = self.end_x - self.padding_court
-        self.court_end_y = self.end_y - self.padding_court
+        self.court_end_y = self.end_y - (self.padding_court + 10)
         self.court_drawing_width = self.court_end_x - self.court_start_x
 
     def set_canvas_background_box_position(self,frame):
@@ -120,8 +120,6 @@ class MiniCourt():
             x = int(self.drawing_key_points[i])
             y = int(self.drawing_key_points[i+1])
             cv2.circle(frame, (x,y),3, (0,0,255),-1)
-            text = "%d"%(i // 2)
-            cv2.putText(frame, text, (x,y), cv2.FONT_HERSHEY_DUPLEX, 0.2, (255, 0, 0))
         
         # draw Lines
         for line in self.lines:
@@ -175,39 +173,6 @@ class MiniCourt():
     def get_court_drawing_keypoints(self):
         return self.drawing_key_points
 
-    def get_mini_court_coordinates(self,
-                                   object_position,
-                                   closest_key_point, 
-                                   closest_key_point_index, 
-                                   player_height_in_pixels,
-                                   player_height_in_meters
-                                   ):
-        
-        distance_from_keypoint_x_pixels, distance_from_keypoint_y_pixels = measure_xy_distance(object_position, closest_key_point)
-
-        # Convert pixel distance to meters
-        distance_from_keypoint_x_meters = convert_pixel_distance_to_meters(distance_from_keypoint_x_pixels,
-                                                                           player_height_in_meters,
-                                                                           player_height_in_pixels
-                                                                           )
-        distance_from_keypoint_y_meters = convert_pixel_distance_to_meters(distance_from_keypoint_y_pixels,
-                                                                                player_height_in_meters,
-                                                                                player_height_in_pixels
-                                                                          )
-        
-        # Convert to mini court coordinates
-        mini_court_x_distance_pixels = self.convert_meters_to_pixels(distance_from_keypoint_x_meters)
-        mini_court_y_distance_pixels = self.convert_meters_to_pixels(distance_from_keypoint_y_meters)
-        closest_mini_court_keypoint = ( self.drawing_key_points[closest_key_point_index*2],
-                                        self.drawing_key_points[closest_key_point_index*2+1]
-                                        )
-        
-        mini_court_player_position = (closest_mini_court_keypoint[0]+mini_court_x_distance_pixels,
-                                      closest_mini_court_keypoint[1]+mini_court_y_distance_pixels
-                                        )
-
-        return  mini_court_player_position
-
     def create_homography_matrix(self, real_keypoints):
         
         # Points in the actual video frame
@@ -252,8 +217,6 @@ class MiniCourt():
         
         return (point_mini_court[0], point_mini_court[1])
 
-                
-    
     def convert_bounding_boxes_to_mini_court_coordinates(self,player_boxes, ball_boxes, original_court_key_points ):
         player_heights = {
             1: constants.PLAYER_1_HEIGHT_METERS,
