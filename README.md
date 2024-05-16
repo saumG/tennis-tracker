@@ -22,20 +22,20 @@ These skills are now part of my toolkit, ready to tackle challenge and beyond!
 
 While the Tennis Rally Analyzer has come a long way, there are still a few challenges to tackle and exciting avenues for future improvements:
 
-##### Enhanced Ball Tracking Accuracy:
+#### Enhanced Ball Tracking Accuracy:
 
-**Challenge** The ball tracking model occasionally loses track of the ball, especially during fast rallies or occlusions.
-**Next Steps** Currently, I addressed this through extrapolation but I could incorporate more robust tracking algorithms, such as those leveraging deep learning techniques or combining multiple tracking models for increased accuracy.
+**Challenge**: The ball tracking model occasionally loses track of the ball, especially during fast rallies or occlusions.
+**Next Steps**: Currently, I addressed this through extrapolation but I could incorporate more robust tracking algorithms, such as those leveraging deep learning techniques or combining multiple tracking models for increased accuracy.
 
-##### Distinguishing Players Automatically:
+#### Distinguishing Players Automatically:
 
-**Challenge** The current model sometimes struggles to consistently identify and distinguish between players.
-**Next Steps** Implement advanced player identification methods, possibly using player-specific features or uniforms, to ensure consistent and accurate tracking.
+**Challenge**: The current model sometimes struggles to consistently identify and distinguish between players.
+**Next Steps**: Implement advanced player identification methods, possibly using player-specific features or uniforms, to ensure consistent and accurate tracking.
 
-##### Real-Time Processing:
+#### Real-Time Processing:
 
-**Challenge** The current implementation processes videos offline, which limits its use for live game analysis.
-**Next Steps** Optimize the code for real-time processing, enabling coaches and analysts to get instant feedback during matches.
+**Challenge**: The current implementation processes videos offline, which limits its use for live game analysis.
+**Next Steps**: Optimize the code for real-time processing, enabling coaches and analysts to get instant feedback during matches.
 
 ### What are the steps I took to build this project?
 
