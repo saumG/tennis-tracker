@@ -1,4 +1,4 @@
-# tennis-tracker
+# Tennis Rally Tracker
 
 ![Final Model](/images/output_video_FINAL.gif)
 
@@ -6,11 +6,11 @@ Welcome to the Tennis Video Analyzer and Tracker project! This tool is designed 
 
 ### What Did I LEARN?
 
-##Eye for Detail (Computer Vision)##: Got my hands dirty with detecting and tracking players and that cheeky tennis ball in video feeds using fancy models and techniques.
-##Model Whisperer (Machine Learning)##: Juggled custom and open-source models for tasks like player detection, ball tracking, and keypoint spotting like a pro.
-##Data Ninja (Data Processing and Analysis)##: Mastered the art of processing video data, filling in the blanks, and crunching numbers to analyze positions and speeds.
-##Python Prodigy (Python Programming)##: Leveled up my Python skills with a little help from OpenCV, TensorFlow, and a sprinkle of custom algorithms.
-##Algorithm Alchemist (Algorithm Development)##: Cooked up algorithms for filtering, selecting relevant data, converting perspectives, and calculating speeds—essentially, turning data into magic.
+**Eye for Detail (Computer Vision)** Got my hands dirty with detecting and tracking players and that cheeky tennis ball in video feeds using fancy models and techniques.
+**Model Whisperer (Machine Learning)** Juggled custom and open-source models for tasks like player detection, ball tracking, and keypoint spotting like a pro.
+**Data Ninja (Data Processing and Analysis)** Mastered the art of processing video data, filling in the blanks, and crunching numbers to analyze positions and speeds.
+**Python Prodigy (Python Programming)** Leveled up my Python skills with a little help from OpenCV, TensorFlow, and a sprinkle of custom algorithms.
+**Algorithm Alchemist (Algorithm Development)** Cooked up algorithms for filtering, selecting relevant data, converting perspectives, and calculating speeds—essentially, turning data into magic.
 
 These skills are now part of my toolkit, ready to tackle challenge and beyond!
 
@@ -20,18 +20,18 @@ While the Tennis Video Analyzer and Tracker has come a long way, there are still
 
 ##### Enhanced Ball Tracking Accuracy:
 
-##Challenge##: The ball tracking model occasionally loses track of the ball, especially during fast rallies or occlusions.
-##Next Steps##: Currently, I addressed this through extrapolation but I could incorporate more robust tracking algorithms, such as those leveraging deep learning techniques or combining multiple tracking models for increased accuracy.
+**Challenge** The ball tracking model occasionally loses track of the ball, especially during fast rallies or occlusions.
+**Next Steps** Currently, I addressed this through extrapolation but I could incorporate more robust tracking algorithms, such as those leveraging deep learning techniques or combining multiple tracking models for increased accuracy.
 
 ##### Distinguishing Players Automatically:
 
-##Challenge##: The current model sometimes struggles to consistently identify and distinguish between players.
-##Next Steps##: Implement advanced player identification methods, possibly using player-specific features or uniforms, to ensure consistent and accurate tracking.
+**Challenge** The current model sometimes struggles to consistently identify and distinguish between players.
+**Next Steps** Implement advanced player identification methods, possibly using player-specific features or uniforms, to ensure consistent and accurate tracking.
 
 ##### Real-Time Processing:
 
-##Challenge##: The current implementation processes videos offline, which limits its use for live game analysis.
-##Next Steps##: Optimize the code for real-time processing, enabling coaches and analysts to get instant feedback during matches.
+**Challenge** The current implementation processes videos offline, which limits its use for live game analysis.
+**Next Steps** Optimize the code for real-time processing, enabling coaches and analysts to get instant feedback during matches.
 
 ### What are the steps I took to build this project?
 
