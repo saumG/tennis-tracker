@@ -1,22 +1,26 @@
-# Tennis Rally Tracker
+# Tennis Rally Analyzer
 
 ![Final Model](/images/output_video_FINAL.gif)
 
-Welcome to the Tennis Video Analyzer and Tracker project! This tool is designed to transform a simple video of a tennis rally into a comprehensive analysis of player and ball dynamics. By detecting and tracking players and the ball, this project provides insights into court positioning, movement speeds, and overall game performance. Not only is it a powerful analytical tool, but it was also incredibly fun to build. From fine-tuning player detection to taming an elusive ball tracker, every step was a blend of technical challenges and rewarding breakthroughs. Whether you're a coach, player, or just an enthusiast, this project offers a unique perspective on the beautiful game of tennis.
+Welcome to my Tennis Rally Analyzer project! I made this tool to transform a simple video of a tennis rally into a comprehensive analysis of player and ball dynamics. By detecting and tracking players and the ball, this project provides insights into court positioning, movement speeds, and overall game performance. Not only is it a powerful analytical tool, but it was also incredibly fun to build. From fine-tuning player detection to taming an elusive ball tracker, every step was a blend of technical challenges and rewarding breakthroughs. Whether you're a coach, player, or just an enthusiast, this project offers a unique perspective on the beautiful game of tennis.
 
 ### What Did I LEARN?
 
-**Eye for Detail (Computer Vision)** Got my hands dirty with detecting and tracking players and that cheeky tennis ball in video feeds using fancy models and techniques.
-**Model Whisperer (Machine Learning)** Juggled custom and open-source models for tasks like player detection, ball tracking, and keypoint spotting like a pro.
-**Data Ninja (Data Processing and Analysis)** Mastered the art of processing video data, filling in the blanks, and crunching numbers to analyze positions and speeds.
-**Python Prodigy (Python Programming)** Leveled up my Python skills with a little help from OpenCV, TensorFlow, and a sprinkle of custom algorithms.
-**Algorithm Alchemist (Algorithm Development)** Cooked up algorithms for filtering, selecting relevant data, converting perspectives, and calculating speeds—essentially, turning data into magic.
+**Eye for Detail (Computer Vision)**: Got my hands dirty with detecting and tracking players and that cheeky tennis ball in video feeds using fancy models and techniques.
+
+**Model Whisperer (Machine Learning)**: Juggled custom and open-source models for tasks like player detection, ball tracking, and keypoint spotting like a pro.
+
+**Data Ninja (Data Processing and Analysis)**: Mastered the art of processing video data, filling in the blanks, and crunching numbers to analyze positions and speeds.
+
+**Python Prodigy (Python Programming)**: Leveled up my Python skills with a little help from OpenCV, TensorFlow, and a sprinkle of custom algorithms.
+
+**Algorithm Alchemist (Algorithm Development)**: Cooked up algorithms for filtering, selecting relevant data, converting perspectives, and calculating speeds—essentially, turning data into magic.
 
 These skills are now part of my toolkit, ready to tackle challenge and beyond!
 
 ### Challenges to Address and Next Steps if I ever revisit this project
 
-While the Tennis Video Analyzer and Tracker has come a long way, there are still a few challenges to tackle and exciting avenues for future improvements:
+While the Tennis Rally Analyzer has come a long way, there are still a few challenges to tackle and exciting avenues for future improvements:
 
 ##### Enhanced Ball Tracking Accuracy:
 
